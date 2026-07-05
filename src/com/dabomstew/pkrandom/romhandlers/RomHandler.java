@@ -126,6 +126,8 @@ public interface RomHandler {
 
     void randomizeBasicTwoEvosStarters(Settings settings);
 
+    void randomizeBasicStarters(Settings settings);
+
     List<Pokemon> getPickedStarters();
 
     boolean supportsStarterHeldItems();
@@ -174,6 +176,8 @@ public interface RomHandler {
     // Give a random Pokemon who has 2 evolution stages
     // Should make a good starter Pokemon
     Pokemon random2EvosPokemon(boolean allowAltFormes);
+
+    Pokemon randomBasicPokemon(boolean allowAltFormes, boolean randomBasicBanLegendary);
 
     // =============
     // Pokemon Types
