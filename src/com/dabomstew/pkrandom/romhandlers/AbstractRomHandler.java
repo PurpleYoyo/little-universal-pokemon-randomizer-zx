@@ -917,7 +917,7 @@ public abstract class AbstractRomHandler implements RomHandler {
             // Entirely random
             for (EncounterSet area : scrambledEncounters) {
                 for (Encounter enc : area.encounters) {
-                    enc.pokemon = pickEntirelyRandomPokemon(allowAltFormes, noLegendaries, area, banned);
+                    enc.pokemon = randomBasicPokemon(True, True);
                     setFormeForEncounter(enc, enc.pokemon);
                 }
             }
@@ -1912,18 +1912,7 @@ public abstract class AbstractRomHandler implements RomHandler {
                     bannedList.addAll(evolvesIntoTheWrongType);
                 }
 
-                Pokemon newPK = pickTrainerPokeReplacement(
-                                oldPK,
-                                usePowerLevels,
-                                typeForTrainer,
-                                noLegendaries,
-                                wgAllowed,
-                                distributionSetting || (mainPlaythroughSetting && mainPlaythroughTrainers.contains(t.index)),
-                                swapThisMegaEvo,
-                                abilitiesAreRandomized,
-                                includeFormes,
-                                banIrregularAltFormes
-                        );
+                Pokemon newPK = Pokemon pkmn = randomBasicPokemon(True, True);
 
                 // Chosen Pokemon is locked in past here
                 if (distributionSetting || (mainPlaythroughSetting && mainPlaythroughTrainers.contains(t.index))) {
@@ -4039,9 +4028,9 @@ public abstract class AbstractRomHandler implements RomHandler {
             banned.addAll(getIrregularFormes());
         }
         for (int i = 0; i < starterCount; i++) {
-            Pokemon pkmn = allowAltFormes ? randomPokemonInclFormes() : randomPokemon();
+            Pokemon pkmn = randomBasicPokemon(True, True);
             while (pickedStarters.contains(pkmn) || banned.contains(pkmn) || pkmn.actuallyCosmetic) {
-                pkmn = allowAltFormes ? randomPokemonInclFormes() : randomPokemon();
+                pkmn = Pokemon pkmn = randomBasicPokemon(True, True);
             }
             pickedStarters.add(pkmn);
         }
